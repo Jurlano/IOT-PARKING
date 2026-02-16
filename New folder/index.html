@@ -1,0 +1,586 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.5, user-scalable=yes, viewport-fit=cover">
+    <title>⚡ PARKiT · CYBER ADLAW ⚡</title>
+    <!-- Font Awesome 6 -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <!-- Google Font – Inter + Space Grotesk for cyber edge -->
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&family=Space+Grotesk:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* ===== CYBERPUNK EDITION · ZERO VISITORS? LISTA NINJA ===== */
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Space Grotesk', 'Inter', sans-serif;
+            background: #0b121c; /* dark base */
+            background-image: 
+                linear-gradient(0deg, rgba(2, 150, 255, 0.03) 1px, transparent 1px),
+                linear-gradient(90deg, rgba(2, 150, 255, 0.03) 1px, transparent 1px);
+            background-size: 40px 40px;
+            min-height: 100vh;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 16px;
+            color: #c0e0ff;
+        }
+
+        .parking-container {
+            max-width: 500px;
+            width: 100%;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        /* cyber glow border */
+        .park-card {
+            background: rgba(10, 20, 40, 0.85);
+            backdrop-filter: blur(15px) saturate(180%);
+            -webkit-backdrop-filter: blur(15px) saturate(180%);
+            border-radius: 48px 48px 32px 32px;
+            box-shadow: 0 20px 40px rgba(0, 0, 0, 0.8), 0 0 0 2px rgba(0, 255, 255, 0.2) inset, 0 0 30px rgba(0, 180, 255, 0.3);
+            padding: 30px 24px;
+            border: 1px solid rgba(0, 255, 255, 0.3);
+        }
+
+        /* ===== HEADER WITH GLITCH ===== */
+        .adlaw-header {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            margin-bottom: 28px;
+            background: rgba(0, 15, 30, 0.7);
+            padding: 6px 6px 6px 24px;
+            border-radius: 60px;
+            border: 1px solid #00ffff40;
+            box-shadow: 0 0 10px #00aaff40;
+        }
+
+        .api-tag {
+            background: #00ffff10;
+            padding: 8px 24px;
+            border-radius: 60px;
+            font-size: 0.8rem;
+            font-weight: 700;
+            color: #aaffff;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            letter-spacing: 1.5px;
+            border: 1px solid cyan;
+            text-transform: uppercase;
+        }
+
+        .api-tag i {
+            color: #ffcc00;
+            text-shadow: 0 0 6px gold;
+        }
+
+        .date-badge {
+            background: #001e30;
+            padding: 8px 20px;
+            border-radius: 60px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            color: #a0f0ff;
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            border: 1px solid #00ccff;
+            box-shadow: 0 0 12px cyan;
+        }
+
+        /* TODAY COUNTER — BIG CYBER */
+        .today-counter {
+            background: rgba(0, 30, 50, 0.6);
+            border-radius: 48px;
+            padding: 30px 20px;
+            margin-bottom: 20px;
+            text-align: center;
+            border: 2px solid #00ddff;
+            box-shadow: 0 0 40px #00a6ff, inset 0 0 20px #003cff40;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .today-counter::after {
+            content: "";
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: repeating-linear-gradient(0deg, transparent, transparent 10px, rgba(0,255,255,0.03) 10px, rgba(0,255,255,0.03) 20px);
+            pointer-events: none;
+            animation: scan 12s linear infinite;
+        }
+
+        @keyframes scan {
+            0% { transform: translateY(0); }
+            100% { transform: translateY(40px); }
+        }
+
+        .adlaw-label {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #ffdd44;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-transform: uppercase;
+            letter-spacing: 5px;
+            text-shadow: 0 0 10px gold, 0 0 20px orange;
+        }
+
+        .adlaw-label i {
+            color: #ffaa00;
+            font-size: 1.8rem;
+            filter: drop-shadow(0 0 8px orange);
+        }
+
+        .adlaw-number {
+            font-size: 9rem;
+            font-weight: 800;
+            color: #ffffff;
+            line-height: 1;
+            letter-spacing: -6px;
+            text-shadow: 0 0 10px cyan, 0 0 30px blue, 0 0 60px #00b7ff;
+            margin: 12px 0;
+            font-family: 'Space Grotesk', monospace;
+        }
+
+        .adlaw-unit {
+            font-size: 2.2rem;
+            font-weight: 500;
+            color: #88ddff;
+            margin-left: 8px;
+            letter-spacing: 0px;
+            text-shadow: 0 0 8px deepskyblue;
+        }
+
+        .today-date-highlight {
+            font-size: 1.4rem;
+            font-weight: 700;
+            color: #d0f0ff;
+            background: rgba(0, 128, 255, 0.15);
+            padding: 14px 28px;
+            border-radius: 60px;
+            display: inline-flex;
+            align-items: center;
+            gap: 12px;
+            margin-top: 18px;
+            border: 1px solid cyan;
+            box-shadow: 0 0 20px #00b3ff;
+        }
+
+        /* STATUS MESSAGE */
+        .status-message {
+            background: rgba(0, 20, 40, 0.8);
+            border-radius: 40px;
+            padding: 22px 24px;
+            margin-bottom: 28px;
+            text-align: center;
+            border: 1px solid #0cf;
+            box-shadow: 0 0 20px #00ccff80;
+        }
+
+        .status-text {
+            font-size: 1.5rem;
+            font-weight: 600;
+            color: #7df9ff;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 12px;
+            text-shadow: 0 0 8px cyan;
+        }
+
+        .status-text i {
+            color: #ffbb2b;
+            font-size: 1.9rem;
+            filter: drop-shadow(0 0 8px gold);
+        }
+
+        /* ===== NEW SECTION: HISTORY / MGA ADLAW ===== */
+        .history-section {
+            background: rgba(0, 10, 25, 0.9);
+            border-radius: 36px;
+            padding: 24px 18px;
+            margin-top: 24px;
+            margin-bottom: 18px;
+            border: 1px solid #ff66ff;
+            box-shadow: 0 0 30px #f0f, inset 0 0 10px magenta;
+            backdrop-filter: blur(5px);
+        }
+
+        .history-header {
+            display: flex;
+            align-items: center;
+            gap: 12px;
+            color: #ffa0ff;
+            font-size: 1.2rem;
+            font-weight: 700;
+            text-transform: uppercase;
+            letter-spacing: 3px;
+            margin-bottom: 20px;
+            border-bottom: 2px solid magenta;
+            padding-bottom: 12px;
+        }
+
+        .history-header i {
+            font-size: 1.8rem;
+            color: magenta;
+            text-shadow: 0 0 15px magenta;
+        }
+
+        .history-list {
+            list-style: none;
+            display: flex;
+            flex-direction: column;
+            gap: 12px;
+            max-height: 220px;
+            overflow-y: auto;
+            padding-right: 8px;
+            scrollbar-width: thin;
+            scrollbar-color: cyan #00152a;
+        }
+
+        .history-list li {
+            background: rgba(255, 0, 255, 0.08);
+            padding: 16px 20px;
+            border-radius: 40px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            font-size: 1.1rem;
+            font-weight: 500;
+            border: 1px solid #ff88ff;
+            box-shadow: 0 0 12px #ff00ff60;
+            color: #ffe2ff;
+            backdrop-filter: blur(4px);
+        }
+
+        .history-list li i {
+            color: #0ff;
+            margin-right: 10px;
+            font-size: 1.2rem;
+        }
+
+        .history-badge {
+            background: magenta;
+            color: black;
+            font-weight: 800;
+            padding: 6px 18px;
+            border-radius: 40px;
+            font-size: 1rem;
+            box-shadow: 0 0 15px magenta;
+            letter-spacing: 1px;
+        }
+
+        .refresh-btn {
+            width: 100%;
+            background: rgba(0, 255, 255, 0.15);
+            border: 2px solid #0cf;
+            border-radius: 100px;
+            padding: 20px;
+            font-size: 1.3rem;
+            font-weight: 700;
+            color: white;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 14px;
+            margin-top: 8px;
+            box-shadow: 0 0 30px cyan, 0 6px 0 #006b8e;
+            transition: 0.08s linear;
+            cursor: pointer;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+
+        .refresh-btn i {
+            font-size: 1.5rem;
+            color: #fffc4d;
+            filter: drop-shadow(0 0 8px yellow);
+        }
+
+        .refresh-btn:active {
+            transform: translateY(5px);
+            box-shadow: 0 0 40px cyan, 0 1px 0 #006b8e;
+        }
+
+        .footer {
+            margin-top: 28px;
+            text-align: center;
+            font-size: 0.85rem;
+            color: #6dd0ff;
+            border-top: 1px solid cyan;
+            padding-top: 22px;
+            display: flex;
+            justify-content: center;
+            gap: 30px;
+            font-weight: 600;
+            text-shadow: 0 0 5px blue;
+        }
+
+        .footer i {
+            color: #f0f;
+            text-shadow: 0 0 10px magenta;
+        }
+
+        /* custom scroll */
+        .history-list::-webkit-scrollbar {
+            width: 6px;
+        }
+        .history-list::-webkit-scrollbar-track {
+            background: #001a2f;
+        }
+        .history-list::-webkit-scrollbar-thumb {
+            background: cyan;
+            border-radius: 10px;
+            box-shadow: inset 0 0 6px blue;
+        }
+
+        @media (max-width: 400px) {
+            .adlaw-number { font-size: 7rem; }
+            .status-text { font-size: 1.2rem; }
+        }
+    </style>
+</head>
+<body>
+    <div class="parking-container">
+        <div class="park-card">
+
+            <!-- ===== HEADER with CYBER DATE ===== -->
+            <div class="adlaw-header">
+                <span class="api-tag">
+                    <i class="fas fa-skull"></i> CYBER•PARK
+                </span>
+                <span class="date-badge" id="dateDisplay">
+                    <i class="far fa-calendar-alt"></i> LOAD...
+                </span>
+            </div>
+
+            <!-- ===== MAIN COUNTER – PILA KARON ===== -->
+            <div class="today-counter">
+                <div class="adlaw-label">
+                    <i class="fas fa-car-side"></i> KARON
+                </div>
+                <div>
+                    <span class="adlaw-number" id="occupiedCount">—</span>
+                    <span class="adlaw-unit">CAR</span>
+                </div>
+                <div class="today-date-highlight" id="fullDateDisplay">
+                    <i class="far fa-calendar-check"></i> ...
+                </div>
+            </div>
+
+            <!-- ===== STATUS MESSAGE (if zero) ===== -->
+            <div class="status-message">
+                <span class="status-text" id="statusMessage">
+                    <i class="fas fa-parking"></i> scanning...
+                </span>
+            </div>
+
+            <!-- ===== ★ NEW: HISTORY sa mga ADLAW (mga adlaw nga ni adlaw) ===== -->
+            <div class="history-section" id="historySection">
+                <div class="history-header">
+                    <i class="fas fa-history"></i> MGA ADLAW • VISIT LOG
+                    <span style="margin-left: auto; font-size: 0.9rem; background: #111; padding: 4px 12px; border-radius: 30px; border: 1px solid magenta;">LATEST 5</span>
+                </div>
+                <ul class="history-list" id="historyList">
+                    <li><i class="fas fa-calendar-day"></i> <span>Peb 14, 2026</span> <span class="history-badge">7 vehicle</span></li>
+                    <li><i class="fas fa-calendar-day"></i> <span>Peb 13, 2026</span> <span class="history-badge">3 vehicle</span></li>
+                    <li><i class="fas fa-calendar-day"></i> <span>Peb 12, 2026</span> <span class="history-badge">0 vehicle</span></li>
+                    <li><i class="fas fa-calendar-day"></i> <span>Peb 11, 2026</span> <span class="history-badge">5 vehicle</span></li>
+                    <li><i class="fas fa-calendar-day"></i> <span>Peb 10, 2026</span> <span class="history-badge">2 vehicle</span></li>
+                </ul>
+                <!-- note: dynamic update via mockapi + local history -->
+            </div>
+
+            <!-- refresh button -->
+            <button class="refresh-btn" id="refreshBtn">
+                <i class="fas fa-sync-alt"></i> i-refresh / i-update
+            </button>
+
+            <!-- footer -->
+            <div class="footer">
+                <span><i class="fas fa-microchip"></i> CHICHI</span>
+                <span><i class="fas fa-eye"></i> cyber log</span>
+                <span><i class="fas fa-database"></i> MOCKAPI</span>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        (function() {
+            "use strict";
+
+            // ========== MOCKAPI + CYBER HISTORY ==========
+            const MOCKAPI_URL = 'https://698d3f03b79d1c928ed4ccbd.mockapi.io/parking';
+            
+            // local history store (maximum 5 entries) – array of { dateStr, count }
+            let visitHistory = [];
+
+            // ---------- load from localStorage if available ----------
+            function loadHistory() {
+                try {
+                    const stored = localStorage.getItem('parking_cyber_history');
+                    if (stored) {
+                        visitHistory = JSON.parse(stored);
+                    } else {
+                        // initial default (cyber vibe)
+                        visitHistory = [
+                            { dateStr: 'Peb 14, 2026', count: 7 },
+                            { dateStr: 'Peb 13, 2026', count: 3 },
+                            { dateStr: 'Peb 12, 2026', count: 0 },
+                            { dateStr: 'Peb 11, 2026', count: 5 },
+                            { dateStr: 'Peb 10, 2026', count: 2 }
+                        ];
+                    }
+                } catch (e) {
+                    console.warn("localStorage fail");
+                    visitHistory = [];
+                }
+                renderHistory();
+            }
+
+            // ---------- save history ----------
+            function saveHistory() {
+                try {
+                    localStorage.setItem('parking_cyber_history', JSON.stringify(visitHistory.slice(0, 5)));
+                } catch (e) {}
+            }
+
+            // ---------- add a record (today's visit) but keep latest 5 ----------
+            function addTodayToHistory(todayStr, count) {
+                // avoid duplicate if same day already logged (optional)
+                const existingIndex = visitHistory.findIndex(entry => entry.dateStr === todayStr);
+                if (existingIndex !== -1) {
+                    // update count
+                    visitHistory[existingIndex].count = count;
+                } else {
+                    // insert at beginning (newest first)
+                    visitHistory.unshift({ dateStr: todayStr, count: count });
+                }
+                // limit to 5 entries, keep newest
+                if (visitHistory.length > 5) {
+                    visitHistory = visitHistory.slice(0, 5);
+                }
+                saveHistory();
+                renderHistory();
+            }
+
+            // ---------- render ul ----------
+            function renderHistory() {
+                const listEl = document.getElementById('historyList');
+                if (!listEl) return;
+                listEl.innerHTML = '';
+                if (visitHistory.length === 0) {
+                    listEl.innerHTML = '<li style="justify-content:center;"><i class="fas fa-ban"></i> walay history</li>';
+                    return;
+                }
+                // show in order (as stored, newest first)
+                visitHistory.forEach(item => {
+                    const li = document.createElement('li');
+                    // determine if zero? pwede
+                    const countDisplay = item.count + ' sakyanan';
+                    li.innerHTML = `<i class="fas fa-calendar-day"></i> <span>${item.dateStr}</span> <span class="history-badge" style="${item.count === 0 ? 'background: #555; color:white; text-shadow:none;' : ''}">${countDisplay}</span>`;
+                    listEl.appendChild(li);
+                });
+            }
+
+            // ---------- date formatting (Filipino / cyber) ----------
+            function getTodayDateStr() {
+                const now = new Date();
+                const monthNames = ['Enero', 'Pebrero', 'Marso', 'Abril', 'Mayo', 'Hunyo', 
+                                   'Hulyo', 'Agosto', 'Setyembre', 'Oktubre', 'Nobyembre', 'Disyembre'];
+                const month = monthNames[now.getMonth()];
+                const day = now.getDate();
+                const year = now.getFullYear();
+                return `${month} ${day}, ${year}`;
+            }
+
+            function updateDateDisplay() {
+                const now = new Date();
+                const optionsHeader = { weekday: 'short', month: 'short', day: 'numeric', year: 'numeric' };
+                const headerDate = now.toLocaleDateString('en-PH', optionsHeader);
+                document.getElementById('dateDisplay').innerHTML = `<i class="far fa-calendar-alt"></i> ${headerDate}`;
+
+                const monthNames = ['Enero', 'Pebrero', 'Marso', 'Abril', 'Mayo', 'Hunyo', 
+                                   'Hulyo', 'Agosto', 'Setyembre', 'Oktubre', 'Nobyembre', 'Disyembre'];
+                const month = monthNames[now.getMonth()];
+                const day = now.getDate();
+                const year = now.getFullYear();
+                const fullDateString = `${month} ${day}, ${year}`;
+                document.getElementById('fullDateDisplay').innerHTML = `<i class="far fa-calendar-check"></i> ${fullDateString}`;
+            }
+            updateDateDisplay();
+
+            // ---------- fetch from mockapi & update ----------
+            async function fetchParkingData() {
+                document.getElementById('occupiedCount').textContent = '⋯';
+                document.getElementById('statusMessage').innerHTML = `<i class="fas fa-spinner fa-pulse"></i> nag scan...`;
+                try {
+                    const response = await fetch(MOCKAPI_URL);
+                    if (!response.ok) throw new Error(`HTTP ${response.status}`);
+                    const data = await response.json();
+                    
+                    // count occupied (status "1" or 1)
+                    let occupied = 0;
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].status == "1" || data[i].status === 1) {
+                            occupied++;
+                        }
+                    }
+
+                    // update UI
+                    document.getElementById('occupiedCount').textContent = occupied;
+
+                    // status message with zero highlight
+                    let message = "";
+                    if (occupied === 0) {
+                        message = "⛔ ZERO sakyanan · walay bisita";
+                    } else if (occupied === 1) {
+                        message = "🚗 1 ka sakyanan ang naka-parking";
+                    } else {
+                        message = `🚘 ${occupied} ka sakyanan ang naka-parking`;
+                    }
+                    document.getElementById('statusMessage').innerHTML = `<i class="fas fa-parking" style="color: #ffcc00;"></i> ${message}`;
+
+                    // ★ update history with today's data (always add/update)
+                    const todayStr = getTodayDateStr();
+                    addTodayToHistory(todayStr, occupied);
+
+                } catch (error) {
+                    console.error('fetch error:', error);
+                    document.getElementById('occupiedCount').textContent = '?';
+                    document.getElementById('statusMessage').innerHTML = `<i class="fas fa-exclamation-triangle" style="color: #ff44ee;"></i> network error`;
+                }
+            }
+
+            // ---------- initial load ----------
+            loadHistory();          // show default or stored
+            fetchParkingData();     // then update from mockapi
+
+            // refresh button
+            document.getElementById('refreshBtn').addEventListener('click', function() {
+                fetchParkingData();
+            });
+
+            // auto refresh every 20 seconds (para di grabe)
+            setInterval(fetchParkingData, 20000);
+            setInterval(updateDateDisplay, 60000);
+
+            // every minute sync date, but also update history if day changed? we can handle via fetch but anyway.
+        })();
+    </script>
+</body>
+</html>
